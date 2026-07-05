@@ -42,4 +42,13 @@ class UserFactory extends Factory
             'email_verified_at' => null,
         ]);
     }
+
+    public function run(): void
+    {
+        $user = \App\Models\User::where('email', 'admin@example.com')->first();
+
+        Link::factory()->count(5)->create([
+            'user_id' => $user->id,
+        ]);
+    }
 }
